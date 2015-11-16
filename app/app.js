@@ -9,7 +9,9 @@ var altairApp = angular.module('altairApp', [
     'ngSanitize',
     'ngAnimate',
     'ngRetina',
-    'ConsoleLogger'
+    'ConsoleLogger',
+    'bakimliHome',
+    'bakimliAuth'
 ]);
 
 altairApp.constant('variables', {
