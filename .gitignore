@@ -2,6 +2,7 @@ node_modules/
 bower_components/
 dist/
 
-assets/js/*.min.js
 assets/js/custom/*.min.js
+assets/js/common.min.js
+assets/js/common.js
 assets/css/main*.css
