@@ -1,5 +1,5 @@
 (function() {
     'use strict';
 
-    angular.module('bakimliAauth', []);
+    angular.module('bakimliAuth', []);
 })();
