@@ -1,7 +1,6 @@
 {
   "name": "Bakimli Admin",
-  "authors": [
-  ],
+  "authors": [],
   "description": "",
   "main": [
     "index.html",
@@ -94,6 +93,10 @@
   "resolutions": {
     "jquery": ">=2.1.4",
     "fastclick": "~1.0.6",
-    "angular": ">=1.4.0"
+    "angular": ">=1.4.0",
+    "metrics-graphics": "~2.7.0",
+    "lodash": "~3.10.1",
+    "fullcalendar": "~2.4.0",
+    "d3": "<=3.5.5"
   }
 }
