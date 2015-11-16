@@ -86,7 +86,7 @@ altairApp
                     $rootScope.primarySidebarActive = false;
                     $rootScope.hide_content_sidebar = false;
                 }
-                if(!toParams.hasOwnProperty('hidePreloader')) {
+                if(!toParams.hasOwnProperty('hidePreloader') && !event.defaultPrevented) {
                     $rootScope.pageLoading = true;
                     $rootScope.pageLoaded = false;
                 }
