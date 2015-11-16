@@ -28,6 +28,9 @@ altairApp
                 .state("restricted", {
                     abstract: true,
                     url: "",
+                    data: {
+                        isPrivate: true
+                    },
                     views: {
                         'main_header': {
                             templateUrl: 'app/shared/header/headerView.html',
