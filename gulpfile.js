@@ -163,20 +163,11 @@ gulp.task('json_minify', function() {
 });
 
 // -------------------- BROWSER SYNC http://www.browsersync.io/docs/ --------------------
-gulp.task('browser-sync', function() {
+gulp.task('serve', function() {
 
     bs_angular.init({
-        // http://www.browsersync.io/docs/options/#option-host
-        host: "10.0.0.188",
-        // http://www.browsersync.io/docs/options/#option-proxy
-        proxy: "altair_app.local",
-        // http://www.browsersync.io/docs/options/#option-port
-        port: 3022,
-        // http://www.browsersync.io/docs/options/#option-notify
-        notify: true,
-        ui: {
-            port: 3021
-        }
+        server: './',
+        index: 'index.html'
     });
 
     gulp.watch([
