@@ -6,3 +6,5 @@ assets/js/custom/*.min.js
 assets/js/common.min.js
 assets/js/common.js
 assets/css/main*.css
+assets/js/uikit_custom.min.js
+assets/js/uikit_custom.js
