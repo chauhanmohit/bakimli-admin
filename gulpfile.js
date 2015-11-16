@@ -22,8 +22,7 @@ var version = pjson.version;
 
 // 1. -------------------- MINIFY/CONCATENATE JS FILES --------------------
 
-// commmon
-gulp.task('common_js', function () {
+gulp.task('common:js', function () {
     return gulp.src([
         "bower_components/jquery/dist/jquery.js",
         "bower_components/modernizr/modernizr.js",
@@ -52,13 +51,18 @@ gulp.task('common_js', function () {
         "bower_components/jquery.debouncedresize/js/jquery.debouncedresize.js",
         // screenfull
         "bower_components/screenfull/dist/screenfull.js"
-    ])
-        .pipe(plugins.concat('common.js'))
+    ]).pipe(plugins.concat('common.js'))
         .on('error', function(err) {
             console.log(chalk_error(err.message));
             this.emit('end');
         })
-        .pipe(gulp.dest('assets/js/'))
+        .pipe(gulp.dest('assets/js/'));
+});
+
+gulp.task('common:js:min', ['common:js'], function() {
+    return gulp.src([
+        'assets/js/common.js'
+        ])
         .pipe(plugins.uglify({
             mangle: true
         }))
@@ -70,7 +74,7 @@ gulp.task('common_js', function () {
 });
 
 // cutom uikit
-gulp.task('uikit_js', function () {
+gulp.task('uikit:js', function () {
     return gulp.src([
         // uikit core
         "bower_components/uikit/js/uikit.js",
@@ -92,7 +96,13 @@ gulp.task('uikit_js', function () {
         "assets/js/custom/uikit_beforeready.js"
     ])
         .pipe(plugins.concat('uikit_custom.js'))
-        .pipe(gulp.dest('assets/js/'))
+        .pipe(gulp.dest('assets/js/'));
+});
+
+gulp.task('uikit:js:min', ['uikit:js'], function() {
+    return gulp.src([
+        'assets/js/uikit_custom.js'
+        ])
         .pipe(plugins.uglify({
             mangle: true
         }))
@@ -103,8 +113,7 @@ gulp.task('uikit_js', function () {
         .pipe(gulp.dest('assets/js/'));
 });
 
-// common/custom functions
-gulp.task('custom_js_minify', function () {
+gulp.task('custom:js:min', function () {
     return gulp.src([
         'assets/js/custom/*.js',
         '!assets/js/**/*.min.js'
@@ -122,8 +131,7 @@ gulp.task('custom_js_minify', function () {
 
 // -------------------- LESS TO CSS --------------------
 
-// main styles
-gulp.task('less_main', function() {
+gulp.task('custom:styles', function() {
     return gulp.src('assets/less/main.less')
         .pipe(plugins.less())
         .on('error', function(err) {
@@ -134,7 +142,11 @@ gulp.task('less_main', function() {
             browsers: ['> 5%','last 2 versions'],
             cascade: false
         }))
-        .pipe(gulp.dest('assets/css'))
+        .pipe(gulp.dest('assets/css'));
+});
+
+gulp.task('custom:styles:min', ['custom:styles'], function() {
+    return gulp.src('assets/css/main.css')
         .pipe(bs_angular.stream())
         .pipe(plugins.minifyCss({
             keepSpecialComments: 0,
@@ -146,7 +158,7 @@ gulp.task('less_main', function() {
 
 // -------------------- MINIFY JSON --------------------
 
-gulp.task('json_minify', function() {
+gulp.task('custom:json', function() {
     return gulp.src([
             'data/*.json',
             '!data/*.min.json'
@@ -162,6 +174,32 @@ gulp.task('json_minify', function() {
         .pipe(gulp.dest('data/'));
 });
 
+gulp.task('custom:app', function() {
+    return gulp.src([
+        'app/app.js',
+        'app/*.js',
+        'app/**/*.module.js',
+        'app/**/*.js'
+        ])
+        .pipe(plugins.concat('app.min.js'))
+        .pipe(gulp.dest('assets/js'));
+});
+
+gulp.task('custom:app:min', function() {
+    return gulp.src('assets/app.js')
+        .pipe(plugins.ngAnnotate())
+        .pipe(plugins.uglify())
+        .pipe(plugins.size({
+            showFiles: true
+        }))
+        .pipe(plugins.rename({
+            extname: ".min.js"
+        }))
+        .pipe(gulp.dest('assets/js/'));
+});
+
+gulp.task('custom', ['custom:app:min', 'custom:styles:min', 'custom:json']);
+
 // -------------------- BROWSER SYNC http://www.browsersync.io/docs/ --------------------
 gulp.task('serve', function() {
 
@@ -174,20 +212,21 @@ gulp.task('serve', function() {
         'assets/less/**/*.less',
         '!assets/less/pages/error_page.less',
         '!assets/less/pages/login_page.less'
-    ],['less_main']);
+    ],['custom:styles:min']);
 
     gulp.watch([
         'index.html',
         'app/**/*',
         '!app/**/*.min.js'
-    ]).on('change', bs_angular.reload);
+    ], ['custom:app:min', 'serve:reload']);
 
+});
+
+gulp.task('serve:reload', function() {
+    bs_angular.reload();
 });
 
 // -------------------- DEFAULT TASK ----------------------
-gulp.task('default', function(callback) {
-    return plugins.runSequence(
-        ['common_js','custom_js_minify','uikit_js','less_main','json_minify'],
-        callback
-    );
-});
+gulp.task('build', ['custom', 'common:js:min', 'uikit:js:min']);
+
+gulp.task('default', ['build', 'serve']);
