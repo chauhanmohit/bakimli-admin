@@ -7,6 +7,8 @@ altairApp
             // Use $urlRouterProvider to configure any redirects (when) and invalid urls (otherwise).
             $urlRouterProvider
                 .when('/dashboard', '/')
+                .when('/home', '/')
+                .when('/index', '/')
                 .otherwise('/');
 
             $stateProvider
@@ -51,6 +53,15 @@ altairApp
                             ],{ serie: true });
                         }]
                     }
+                })
+                .state("restricted.home", {
+                    url: "/",
+                    templateUrl: 'app/views/home/index.html',
+                    controller: 'HomeController',
+                    data: {
+                        pageTitle: 'Dashboard'
+                    }
+
                 });
         }
     ]);
