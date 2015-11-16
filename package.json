@@ -37,5 +37,8 @@
     "merge-stream": "^1.0.0",
     "os-utils": "0.0.14",
     "run-sequence": "^1.1.4"
+  },
+  "dependencies": {
+    "gulp-ng-annotate": "^1.1.0"
   }
 }
