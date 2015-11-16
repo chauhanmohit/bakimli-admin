@@ -1,3 +1,6 @@
-node_modules
-bower_components
-dist
+node_modules/
+bower_components/
+dist/
+
+assets/js/*.min.js
+assets/js/custom/*.min.js
