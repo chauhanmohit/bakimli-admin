@@ -4,3 +4,4 @@ dist/
 
 assets/js/*.min.js
 assets/js/custom/*.min.js
+assets/css/main*.css
