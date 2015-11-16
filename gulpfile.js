@@ -181,12 +181,12 @@ gulp.task('custom:app', function() {
         'app/**/*.module.js',
         'app/**/*.js'
         ])
-        .pipe(plugins.concat('app.min.js'))
+        .pipe(plugins.concat('app.js'))
         .pipe(gulp.dest('assets/js'));
 });
 
-gulp.task('custom:app:min', function() {
-    return gulp.src('assets/app.js')
+gulp.task('custom:app:min', ['custom:app'], function() {
+    return gulp.src('assets/src/app.js')
         .pipe(plugins.ngAnnotate())
         .pipe(plugins.uglify())
         .pipe(plugins.size({
@@ -215,6 +215,7 @@ gulp.task('serve', function() {
     ],['custom:styles:min']);
 
     gulp.watch([
+        'gulpfile.js',
         'index.html',
         'app/**/*',
         '!app/**/*.min.js'
