@@ -19,7 +19,12 @@
                 $rootScope.user = angular.copy($localStorage.user);
             }
             return true;
-        };
+        },
+            setAuthHeaders = function(token) {
+                if (token) {
+                    $http.defaults.headers.common.Authorization = 'Token ' + token;
+                }
+            };
 
         return {
             isAuthenticated: function() {
@@ -42,6 +47,7 @@
                     }
                     $localStorage.user = angular.copy(response.data);
                     checkUser();
+                    setAuthHeaders($localStorage.user.token);
                     deferred.resolve($localStorage.user);
                 }, function(response) {
                     deferred.reject(response);
