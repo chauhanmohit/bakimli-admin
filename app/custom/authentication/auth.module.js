@@ -2,7 +2,9 @@
     'use strict';
 
     angular.module('bakimliAuth', [
-        'ui.router'
+        'ui.router',
+        'ngStorage',
+        'bakimliUtils'
         ]).run(['$rootScope', '$state', 'AuthFactory', runFn]);
 
     function runFn($rootScope, $state, authFactory) {
