@@ -11,7 +11,14 @@
                 controller: 'LoginController as loginCtrl',
                 data: {
                     pageTitle: 'Login'
-                }
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_parsleyjs'
+                        ]);
+                    }]
+                },
             });
     }]);
 })();
