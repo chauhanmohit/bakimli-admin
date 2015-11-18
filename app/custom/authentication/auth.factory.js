@@ -30,6 +30,25 @@
             isAuthenticated: function() {
                 return checkUser();
             },
+            signup: function(profileData) {
+                var deferred = $q.defer();
+                return deferred.promise;
+            },
+            resetPassword: function(credentials) {
+                var deferred = $q.defer();
+                $http.post(
+                    apiFormat.fmtV1url('/api/v1/auth/reset-password/'),
+                    credentials).then(function (response) {
+                        if (response.status !== 200) {
+                            deferred.reject(response);
+                            return;
+                        }
+                        deferred.resolve(response);
+                }, function (response) {
+                    deferred.reject(response);
+                });
+                return deferred.promise;
+            },
             login: function(credentials) {
                 var deferred = $q.defer();
                 $http.post(apiFormat.fmtV1url('/api/v1/auth/login/'), credentials).then(function(response) {
