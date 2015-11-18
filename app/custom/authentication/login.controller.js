@@ -22,8 +22,28 @@
                 } else {
                     message = 'An error occurred during request. Please try again.';
                 }
-                var thisNotify = UIkit.notify({
+                UIkit.notify({
                     message: message,
+                    status: 'danger',
+                    timeout: 5000,
+                });
+            });
+        };
+
+        self.resetPassword = function(form) {
+            if (!form.$valid) {
+                return;
+            }
+            authFactory.resetPassword(self.resetPasswordModel).then(function (response) {
+                UIkit.notify({
+                    message: response.data.messages.join(''),
+                    status: 'success',
+                    timeout: 5000,
+                });
+                $state.go('login');
+            }, function (response) {
+                UIkit.notify({
+                    message: 'Please check if you\'ve provided correct email.',
                     status: 'danger',
                     timeout: 5000,
                 });
