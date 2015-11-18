@@ -4,7 +4,7 @@
                 <div class="login_heading">
                     <div class="user_avatar"></div>
                 </div>
-                <form b-activate-parsley='' name="loginForm" ng-submit="loginCtrl.submit(loginForm)">
+                <form b-activate-parsley='' name="loginForm" ng-submit="loginCtrl.login(loginForm)">
                     <div class="uk-form-row">
                         <div class="parsley-row">
                         <label for="login_username">Email</label>
@@ -19,7 +19,7 @@
                         <button type="submit" class="md-btn md-btn-primary md-btn-block md-btn-large">Sign In</button>
                     </div>
                     <div class="uk-margin-top">
-                        <a href="#" id="login_help_show" class="uk-float-right" ng-click="loginHelp($event)">Need help?</a>
+                        <a href="#" id="login_help_show" class="uk-float-right" ng-click="loginCtrl.loginHelp($event)">Need help?</a>
                         <span class="icheck-inline">
                             <input type="checkbox" name="login_page_stay_signed" id="login_page_stay_signed" icheck ng-model="login_signed" />
                             <label for="login_page_stay_signed" class="inline-label">Stay signed in</label>
@@ -28,14 +28,14 @@
                 </form>
             </div>
             <div class="md-card-content large-padding uk-position-relative" id="login_help" style="display: none">
-                <button type="button" class="uk-position-top-right uk-close uk-margin-right uk-margin-top back_to_login" ng-click="backToLogin($event)"></button>
+                <button type="button" class="uk-position-top-right uk-close uk-margin-right uk-margin-top back_to_login" ng-click="loginCtrl.backToLogin($event)"></button>
                 <h2 class="heading_b uk-text-success">Can't log in?</h2>
                 <p>Here's the info to get you back in to your account as quickly as possible.</p>
                 <p>First, try the easiest thing: if you remember your password but it isn't working, make sure that Caps Lock is turned off, and that your username is spelled correctly, and then try again.</p>
-                <p>If your password still isn't working, it's time to <a href="#" id="password_reset_show" ng-click="passwordReset($event)">reset your password</a>.</p>
+                <p>If your password still isn't working, it's time to <a href="#" id="password_reset_show" ng-click="loginCtrl.passwordReset($event)">reset your password</a>.</p>
             </div>
             <div class="md-card-content large-padding" id="login_password_reset" style="display: none">
-                <button type="button" class="uk-position-top-right uk-close uk-margin-right uk-margin-top back_to_login" ng-click="backToLogin($event)"></button>
+                <button type="button" class="uk-position-top-right uk-close uk-margin-right uk-margin-top back_to_login" ng-click="loginCtrl.backToLogin($event)"></button>
                 <h2 class="heading_a uk-margin-large-bottom">Reset password</h2>
                 <form>
                     <div class="uk-form-row">
@@ -48,7 +48,7 @@
                 </form>
             </div>
             <div class="md-card-content large-padding" id="register_form" style="display: none">
-                <button type="button" class="uk-position-top-right uk-close uk-margin-right uk-margin-top back_to_login" ng-click="backToLogin($event)"></button>
+                <button type="button" class="uk-position-top-right uk-close uk-margin-right uk-margin-top back_to_login" ng-click="loginCtrl.backToLogin($event)"></button>
                 <h2 class="heading_a uk-margin-medium-bottom">Create an account</h2>
                 <form>
                     <div class="uk-form-row">
@@ -74,6 +74,6 @@
             </div>
         </div>
         <div class="uk-margin-top uk-text-center">
-            <a href="#" id="signup_form_show" ng-hide="registerFormActive" ng-click="registerForm($event)">Create an account</a>
+            <a href="#" id="signup_form_show" ng-hide="registerFormActive" ng-click="loginCtrl.registerForm($event)">Create an account</a>
         </div>
     </div>
