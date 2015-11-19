@@ -1,7 +1,7 @@
 /*
 *  Altair Admin AngularJS
 */
-;"use strict";
+"use strict";
 
 var altairApp = angular.module('altairApp', [
     'ui.router',
@@ -11,7 +11,8 @@ var altairApp = angular.module('altairApp', [
     'ngRetina',
     'ConsoleLogger',
     'bakimliHome',
-    'bakimliAuth'
+    'bakimliAuth',
+    'bakimliProfessionals'
 ]);
 
 altairApp.constant('variables', {
