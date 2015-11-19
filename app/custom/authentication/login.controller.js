@@ -50,6 +50,17 @@
             });
         };
 
+        self.createAccount = function(form) {
+            if (!form.$valid) {
+                return;
+            }
+            authFactory.signup(self.signupModel).then(function (response) {
+                $state.go('restricted.home');
+            }, function (response) {
+                // validation of the response
+            });
+        };
+
         self.registerFormActive = false;
 
         var $login_card = $('#login_card'),

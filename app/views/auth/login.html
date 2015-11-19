@@ -40,7 +40,7 @@
                 <form b-activate-parsley="" name="resetPasswordForm" ng-submit="loginCtrl.resetPassword(resetPasswordForm)">
                     <div class="uk-form-row">
                         <label for="login_email_reset">Your email address</label>
-                        <input class="md-input" type="email" id="login_email_reset" ng-model="loginCtrl.resetPasswordModel.email" md-input />
+                        <input class="md-input" type="email" id="login_email_reset" ng-model="loginCtrl.resetPasswordModel.email" md-input required />
                     </div>
                     <div class="uk-margin-medium-top">
                         <button type="submit" class="md-btn md-btn-primary md-btn-block">Reset password</button>
@@ -50,25 +50,25 @@
             <div class="md-card-content large-padding" id="register_form" style="display: none">
                 <button type="button" class="uk-position-top-right uk-close uk-margin-right uk-margin-top back_to_login" ng-click="loginCtrl.backToLogin($event)"></button>
                 <h2 class="heading_a uk-margin-medium-bottom">Create an account</h2>
-                <form>
+                <form b-activate-parsley="" name="signupForm" ng-submit="loginCtrl.createAccount(signupForm)">
                     <div class="uk-form-row">
-                        <label for="register_username">Username</label>
-                        <input class="md-input" type="text" id="register_username" ng-model="register_username" md-input />
+                        <label for="register_username">Email</label>
+                        <input class="md-input" type="email" id="register_username" ng-model="loginCtrl.signupModel.email" md-input required />
+                    </div>
+                    <div class="uk-form-row">
+                        <label for="register_name">Name</label>
+                        <input class="md-input" type="text" id="register_name" ng-model="loginCtrl.signupModel.name" md-input required />
                     </div>
                     <div class="uk-form-row">
                         <label for="register_password">Password</label>
-                        <input class="md-input" type="password" id="register_password" ng-model="register_password" md-input />
+                        <input class="md-input" type="password" id="register_password" ng-model="loginCtrl.signupModel.password1" md-input />
                     </div>
                     <div class="uk-form-row">
                         <label for="register_password_repeat">Repeat Password</label>
-                        <input class="md-input" type="password" id="register_password_repeat" ng-model="register_password_repeat" md-input />
-                    </div>
-                    <div class="uk-form-row">
-                        <label for="register_email">E-mail</label>
-                        <input class="md-input" type="text" id="register_email" ng-model="register_email" md-input />
+                        <input class="md-input" type="password" id="register_password_repeat" ng-model="register_password_repeat" md-input data-parsley-equalto="#register_password" />
                     </div>
                     <div class="uk-margin-medium-top">
-                        <a ui-sref="restricted.dashboard" class="md-btn md-btn-primary md-btn-block md-btn-large">Sign Up</a>
+                        <button type="submit" class="md-btn md-btn-primary md-btn-block md-btn-large">Sign Up</button>
                     </div>
                 </form>
             </div>
