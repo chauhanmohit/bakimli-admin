@@ -11,7 +11,7 @@
         ]);
 
     function authFactory($localStorage, $rootScope, $q, $http, apiFormat) {
-        var checkUser = function() {
+        var checkLocalUser = function() {
             if (typeof $localStorage.user !== 'object') {
                 return false;
             }
@@ -24,18 +24,32 @@
                 if (token) {
                     $http.defaults.headers.common.Authorization = 'Token ' + token;
                 }
+            },
+            validateUser = function (user) {
+                if (typeof user !== 'object') {
+                    return false;
+                }
+                if (typeof user.token === 'undefined' || !user.token || !user.token.length) {
+                    return false;
+                }
+                return true;
+            },
+            setLocalUser = function (user) {
+                $localStorage.user = angular.copy(user);
+                checkLocalUser();
+                setAuthHeaders(user.token);
             };
 
         return {
             isAuthenticated: function() {
-                return checkUser();
+                return checkLocalUser();
             },
             signup: function(profileData) {
                 var deferred = $q.defer();
                 $http.post(
                     apiFormat.fmtV1url('/api/v1/auth/signup/'),
                     profileData).then(function (response) {
-                        if (response.status !== 201) {
+                        if (response.status !== 201 || !validateUser(response.data)) {
                             deferred.reject(response);
                             return;
                         }
@@ -63,21 +77,11 @@
             login: function(credentials) {
                 var deferred = $q.defer();
                 $http.post(apiFormat.fmtV1url('/api/v1/auth/login/'), credentials).then(function(response) {
-                    if (response.status !== 200) {
+                    if (response.status !== 200 || !validateUser(response.data)) {
                         deferred.reject(response);
                         return;
                     }
-                    if (typeof response.data !== 'object') {
-                        deferred.reject(response);
-                        return;
-                    }
-                    if (typeof response.data.token === 'undefined') {
-                        deferred.reject(response);
-                        return;
-                    }
-                    $localStorage.user = angular.copy(response.data);
-                    checkUser();
-                    setAuthHeaders($localStorage.user.token);
+                    setLocalUser(response.data);
                     deferred.resolve($localStorage.user);
                 }, function(response) {
                     deferred.reject(response);
