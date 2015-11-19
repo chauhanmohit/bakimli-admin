@@ -64,7 +64,7 @@ altairApp
                     data: {
                         pageTitle: 'Dashboard',
                         permissions: ['ACTIVE'],
-                        redirectTo: 'restricted.professional'
+                        redirectTo: 'restricted.professionals.profile'
                     }
                 });
         }
