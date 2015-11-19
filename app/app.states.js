@@ -62,9 +62,10 @@ altairApp
                     templateUrl: 'app/views/home/index.html',
                     controller: 'HomeController',
                     data: {
-                        pageTitle: 'Dashboard'
+                        pageTitle: 'Dashboard',
+                        permissions: ['ACTIVE'],
+                        redirectTo: 'restricted.professional'
                     }
-
                 });
         }
     ]);
