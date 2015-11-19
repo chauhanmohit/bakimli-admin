@@ -47,7 +47,7 @@
             signup: function(profileData) {
                 var deferred = $q.defer();
                 $http.post(
-                    apiFormat.fmtV1url('/api/v1/auth/signup/'),
+                    apiFormat.fmtV1url('/auth/signup/'),
                     profileData).then(function (response) {
                         if (response.status !== 201 || !validateUser(response.data)) {
                             deferred.reject(response);
@@ -62,7 +62,7 @@
             resetPassword: function(credentials) {
                 var deferred = $q.defer();
                 $http.post(
-                    apiFormat.fmtV1url('/api/v1/auth/reset-password/'),
+                    apiFormat.fmtV1url('/reset-password/'),
                     credentials).then(function (response) {
                         if (response.status !== 200) {
                             deferred.reject(response);
@@ -76,7 +76,7 @@
             },
             login: function(credentials) {
                 var deferred = $q.defer();
-                $http.post(apiFormat.fmtV1url('/api/v1/auth/login/'), credentials).then(function(response) {
+                $http.post(apiFormat.fmtV1url('/auth/login/'), credentials).then(function(response) {
                     if (response.status !== 200 || !validateUser(response.data)) {
                         deferred.reject(response);
                         return;

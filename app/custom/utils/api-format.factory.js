@@ -11,7 +11,7 @@
                 if (url.indexOf('/') !== 0) {
                     url = '/' + url;
                 }
-                return protocol + '://' + hostname + ':' + port + url;
+                return protocol + '://' + hostname + ':' + port + '/api/v1' + url;
             }
         };
     }]);
