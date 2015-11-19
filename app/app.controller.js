@@ -156,7 +156,20 @@ angular
                     title: 'Home',
                     icon: '&#xE871;',
                     link: 'restricted.home'
-                }
+                },
+                {
+                    id: 1,
+                    title: 'User Profile',
+                    icon: '&#xE87C;',
+                    link: 'restricted.professionals.profile',
+                    submenu: [
+                        {
+                            title: 'Edit profile',
+                            link: 'restricted.professionals.edit'
+                        }
+                    ]
+                },
+
             ];
 
         }
