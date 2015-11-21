@@ -87,6 +87,30 @@
                     deferred.reject(response);
                 });
                 return deferred.promise;
+            },
+            logout: function() {
+                delete $localStorage.user;
+                $rootScope.user = null;
+            },
+            reloadProfile: function () {
+                var deferred = $q.defer();
+                if ($localStorage.user) {
+                    $http.get(apiFormat.fmtV1url('/auth/profile/'), {
+                        headers: {Authorization: 'Token ' + $localStorage.user.token}
+                    }).then(function (response) {
+                        if (response.status !== 200 || !validateUser(response.data)) {
+                            deferred.reject(response);
+                            return;
+                        } 
+                        setLocalUser(response.data);
+                        deferred.reslove($localStorage.user);
+                    }, function (response) {
+                        $rootScope.user = null;
+                        delete $localStorage.user;
+                        deferred.reject(response);
+                    });
+                }
+                return deferred.promise;
             }
         };
     }
