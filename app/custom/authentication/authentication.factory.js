@@ -87,6 +87,10 @@
                     deferred.reject(response);
                 });
                 return deferred.promise;
+            },
+            logout: function() {
+                delete $localStorage.user;
+                $rootScope.user = null;
             }
         };
     }

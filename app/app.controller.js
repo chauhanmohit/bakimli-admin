@@ -14,7 +14,9 @@ angular
         '$timeout',
         '$scope',
         '$window',
-        function ($timeout,$scope,$window) {
+        '$state',
+        'AuthFactory',
+        function ($timeout,$scope,$window, $state, authFactory) {
 
             $scope.user_data = {
                 name: "Lue Feest",
@@ -85,10 +87,14 @@ angular
             $('#menu_top').children('[data-uk-dropdown]').on('show.uk.dropdown', function(){
                 $timeout(function() {
                     $($window).resize();
-                },280)
+                },280);
             });
 
-
+            $scope.logout = function (event) {
+                event.preventDefault();
+                authFactory.logout();
+                $state.go('login');
+            };
         }
     ])
     .controller('main_sidebarCtrl', [
