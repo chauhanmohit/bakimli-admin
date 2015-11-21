@@ -161,8 +161,11 @@ angular
                     id: 1,
                     title: 'User Profile',
                     icon: '&#xE87C;',
-                    link: 'restricted.professionals.profile',
                     submenu: [
+                        {
+                            title: 'View profile',
+                            link: 'restricted.professionals.profile',
+                        },
                         {
                             title: 'Edit profile',
                             link: 'restricted.professionals.edit'
