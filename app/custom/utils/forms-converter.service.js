@@ -15,10 +15,14 @@
                 if (!model.hasOwnProperty(key)) {
                     continue;
                 }
-                if (typeof model[key] === 'function') {
+                var value = model[key];
+                if (typeof value === 'function') {
                     continue;
                 }
-                fd.append(key, model[key]);
+                if (typeof value === 'object' && !(value instanceof File)) {
+                    value = angular.toJson(value);
+                }
+                fd.append(key, value);
             }
             return fd;
         };
