@@ -6,7 +6,6 @@
         ]);
 
     function loginCtrl($scope, authFactory, $state, utils) {
-        console.log(utils);
         var self = this;
 
         self.login = function(form) {
