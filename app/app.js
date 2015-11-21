@@ -21,6 +21,11 @@ altairApp.constant('variables', {
     bez_easing_swiftOut: $.bez([ 0.4,0,0.2,1 ])
 });
 
+altairApp.config(['$resourceProvider', '$httpProvider', function($resourceProvider, $httpProvider) {
+    $httpProvider.interceptors.push('AuthenticationInterceptor');
+    $resourceProvider.defaults.stripTrailingSlashes = false;
+}]);
+
 altairApp.config(function($sceDelegateProvider) {
     $sceDelegateProvider.resourceUrlWhitelist([
         'self',
