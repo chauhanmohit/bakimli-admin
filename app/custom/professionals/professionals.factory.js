@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('bakimliProfessionals').factory('Professionals', [
-        '$q', '$http', 'APIFormat', professionalsFactory
+        '$q', '$http', 'APIFormat', '$rootScope', professionalsFactory
         ]);
 
-    function professionalsFactory($q, $http, apiFormat) {
+    function professionalsFactory($q, $http, apiFormat, $rootScope) {
         var createNewProfessional = function (data) {
                 var deferred = $q.defer();
                 var options = null;
@@ -25,6 +25,15 @@
                 });
                 return deferred.promise;
             },
+            updateProfessional = function (data) {
+                var deferred = $q.defer();
+                $http.put($rootScope.user.professional.url, data).then(function (response) {
+                    deferred.resolve(response.data);
+                }, function (response) {
+                    deferred.reject(response);
+                });
+                return deferred.promise;                
+            },
             getProfessional = function (professionalId) {
                 var deferred = $q.defer();
                 $http.get(apiFormat.fmtV1url('/professionals/' + professionalId + '/')).then(function (response) {
@@ -37,7 +46,8 @@
 
         return {
             create: createNewProfessional,
-            get: getProfessional
+            get: getProfessional,
+            update: updateProfessional
         };
     }
 })();
