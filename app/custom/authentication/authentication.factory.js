@@ -94,18 +94,22 @@
             },
             reloadProfile: function () {
                 var deferred = $q.defer();
-                $http.get(apiFormat.fmtV1url('/auth/profile/')).then(function (response) {
-                    if (response.status !== 200 || !validateUser(response.data)) {
+                if ($localStorage.user) {
+                    $http.get(apiFormat.fmtV1url('/auth/profile/'), {
+                        headers: {Authorization: 'Token ' + $localStorage.user.token}
+                    }).then(function (response) {
+                        if (response.status !== 200 || !validateUser(response.data)) {
+                            deferred.reject(response);
+                            return;
+                        } 
+                        setLocalUser(response.data);
+                        deferred.reslove($localStorage.user);
+                    }, function (response) {
+                        $rootScope.user = null;
+                        delete $localStorage.user;
                         deferred.reject(response);
-                        return;
-                    } 
-                    setLocalUser(response.data);
-                    deferred.reslove($localStorage.user);
-                }, function (response) {
-                    $rootScope.user = null;
-                    delete $localStorage.user;
-                    deferred.reject(response);
-                });
+                    });
+                }
                 return deferred.promise;
             }
         };
