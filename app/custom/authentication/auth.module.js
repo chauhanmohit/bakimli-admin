@@ -8,6 +8,7 @@
         ]).run(['$rootScope', '$state', 'AuthFactory', 'AuthorizationFactory', runFn]);
 
     function runFn($rootScope, $state, authFactory, authorization) {
+        authFactory.reloadProfile();
         $rootScope.$on('$stateChangeStart', function(event, stateTo, paramsTo, stateFrom, paramsFrom) {
             if (!stateTo.data) {
                 return;
