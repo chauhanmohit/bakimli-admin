@@ -1,5 +1,5 @@
 (function() {
     'use strict';
 
-    angular.module('bakimliUtils', []);
+    angular.module('bakimliUtils', ['ngResource']);
 })();
