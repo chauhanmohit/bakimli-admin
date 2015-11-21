@@ -10,7 +10,8 @@
             url: "/professionals",
             template: '<ui-view />',
             data: {
-                pageTitle: 'Professionals'
+                pageTitle: 'Professionals',
+                permissions: ['HAS_PROFILE']
             },
             abstract: true
         }).state('restricted.professionals.profile', {
@@ -19,8 +20,13 @@
             controller: 'ProfessionalProfileController as professionalCtrl',
             data: {
                 pageTitle: "Professional's profile",
-                permissions: ['HAS_PROFILE', 'IS_APPROVED'],
-                redirectTo: 'restricted.professionals.edit'
+                redirectTo: 'restricted.professionals.edit',
+                permissions: ['HAS_PROFILE', 'IS_APPROVED']
+            },
+            resolve: {
+                professional: ['$rootScope', 'Professionals', function ($rootScope, professionals) {
+                    return professionals.get($rootScope.user.professional.pk);
+                }]
             }
         }).state('restricted.professionals.edit', {
             url: '/edit',
@@ -34,6 +40,13 @@
                     return $ocLazyLoad.load([
                         'lazy_parsleyjs'
                     ]);
+                }],
+                professional: ['$rootScope', 'Professionals', function ($rootScope, professionals) {
+                    if ($rootScope.user.professional) {
+                        return professionals.get($rootScope.user.professional.pk);
+                    } else {
+                        return null;
+                    }
                 }]
             }
         });
