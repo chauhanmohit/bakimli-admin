@@ -10,8 +10,7 @@
             url: "/professionals",
             template: '<ui-view />',
             data: {
-                pageTitle: 'Professionals',
-                permissions: ['HAS_PROFILE']
+                pageTitle: 'Professionals'
             },
             abstract: true
         }).state('restricted.professionals.profile', {
