@@ -6,11 +6,12 @@
         '$rootScope',
         '$q',
         '$http',
+        '$log',
         'APIFormat',
         authFactory
         ]);
 
-    function authFactory($localStorage, $rootScope, $q, $http, apiFormat) {
+    function authFactory($localStorage, $rootScope, $q, $http, $log, apiFormat) {
         var checkLocalUser = function() {
             if (typeof $localStorage.user !== 'object') {
                 return false;
@@ -49,12 +50,16 @@
                 $http.post(
                     apiFormat.fmtV1url('/auth/signup/'),
                     profileData).then(function (response) {
+                        $log.debug('Signup <success>: status ', response.status, ', response ', response.data);
                         if (response.status !== 201 || !validateUser(response.data)) {
+                            $log.debug('Signup - unexpected status or invalid user. User - ', response.data);
                             deferred.reject(response);
                             return;
                         }
-                        deferred.resolve(response);
+                        setLocalUser(response.data);
+                        deferred.resolve($localStorage.user);
                 }, function (response) {
+                    $log.debug('Signup <error>: status ', response.status, ', response ', response.data);
                     deferred.reject(response);
                 });
                 return deferred.promise;
@@ -77,6 +82,7 @@
             login: function(credentials) {
                 var deferred = $q.defer();
                 $http.post(apiFormat.fmtV1url('/auth/login/'), credentials).then(function(response) {
+                    $log.debug('Login <success>: status ', response.status, ', response ', response.data);
                     if (response.status !== 200 || !validateUser(response.data)) {
                         deferred.reject(response);
                         return;
@@ -84,6 +90,7 @@
                     setLocalUser(response.data);
                     deferred.resolve($localStorage.user);
                 }, function(response) {
+                    $log.debug('Login <error> status ', response.status, ', response ', response.data);
                     deferred.reject(response);
                 });
                 return deferred.promise;
