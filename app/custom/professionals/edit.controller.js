@@ -106,7 +106,7 @@
             phone_number: professional.phone_number,
             address: {
                 address: professional.address,
-                district: professional.district,
+                district: professional.district.pk,
                 postal_code: professional.postal_code
             }
         };
