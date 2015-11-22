@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('bakimliProfessionals').controller('ProfessionalUpdateController', [
-        'Professionals', 'FormUtils', 'Salons', 'Districts', 'professional', professionalCtrl
+        '$state', '$stateParams', 'Professionals', 'FormUtils', 'Salons', 'Districts', 'professional', 'AuthFactory', professionalCtrl
         ]);
 
-    function professionalCtrl(professionals, formUtils, salons, districts, professional) {
+    function professionalCtrl($state, $stateParams, professionals, formUtils, salons, districts, professional, authFactory) {
         var self = this;
 
         salons.query(null, function(result) {
@@ -65,11 +65,24 @@
             if (self.model.photo) {
                 model = formUtils.modelToFormData(self.model);
             }
+            var saveFn;
             if (professional) {
-                professionals.update(model);
+                saveFn = professionals.update;
             } else {
-                professionals.create(model);
+                saveFn = professionals.create;
             }
+
+            saveFn(model).then(function (result) {
+                authFactory.reloadProfile().then(function () {
+                    $state.transitionTo($state.current, $stateParams, {
+                        reload: true,
+                        inherit: false,
+                        notify: true
+                    });
+                });
+            }, function (result) {
+                console.log(result.status, result.data);
+            });
         };
 
         if (professional) {
@@ -85,7 +98,7 @@
             name: professional.name,
             title: professional.title,
             description: professional.description,
-            salon: professional.salon.pk,
+            salon: professional.salon ? professional.salon.pk : null,
             facebook_url: professional.facebook_url,
             twitter_url: professional.twitter_url,
             instagram_url: professional.instagram_url,
@@ -93,7 +106,7 @@
             phone_number: professional.phone_number,
             address: {
                 address: professional.address,
-                district: professional.district,
+                district: professional.district.pk,
                 postal_code: professional.postal_code
             }
         };
