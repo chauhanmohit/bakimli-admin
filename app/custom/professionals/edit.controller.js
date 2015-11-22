@@ -2,10 +2,11 @@
     'use strict';
 
     angular.module('bakimliProfessionals').controller('ProfessionalUpdateController', [
-        '$state', '$stateParams', 'Professionals', 'FormUtils', 'Salons', 'Districts', 'professional', 'AuthFactory', professionalCtrl
+        '$rootScope', '$state', '$stateParams', 'Professionals',
+        'FormUtils', 'Salons', 'Districts', 'professional', 'AuthFactory', professionalCtrl
         ]);
 
-    function professionalCtrl($state, $stateParams, professionals, formUtils, salons, districts, professional, authFactory) {
+    function professionalCtrl($rootScope, $state, $stateParams, professionals, formUtils, salons, districts, professional, authFactory) {
         var self = this;
 
         salons.query(null, function(result) {
@@ -87,7 +88,9 @@
 
         if (professional) {
             setupProfessional(self, professional);
-            self.profileInReview = true;
+            if ($rootScope.user.professional.inactive_status === 'needs_approval') {
+                self.profileInReview = true;
+            }
         } else {
             self.newProfile = true;
         }
