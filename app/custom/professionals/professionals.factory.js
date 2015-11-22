@@ -16,7 +16,7 @@
                     };
                 }
                 $http.post(apiFormat.fmtV1url('/professionals/'), data, options).then(function(response) {
-                    if (response.status === 201) {
+                    if (response.status !== 201) {
                         deferred.reject(response);
                     }
                     deferred.resolve(response.data);
