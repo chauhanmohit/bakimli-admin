@@ -110,7 +110,7 @@
                             return;
                         } 
                         setLocalUser(response.data);
-                        deferred.reslove($localStorage.user);
+                        deferred.resolve($localStorage.user);
                     }, function (response) {
                         $rootScope.user = null;
                         delete $localStorage.user;
