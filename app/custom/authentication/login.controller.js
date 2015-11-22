@@ -56,7 +56,25 @@
             authFactory.signup(self.signupModel).then(function (response) {
                 $state.go('restricted.home');
             }, function (response) {
-                // validation of the response
+                var message, status;
+                if (response.status === 400) {
+                    status = 'warning';
+                    if ('email' in response.data) {
+                        // Using own messages rather than DRF's due to localization
+                        message = [
+                            'An user is already registered with this email.',
+                            'Please try another email or login.'
+                            ].join('');
+                    }
+                    message = 'Please provide valid data and try again.';
+                }
+                if (message && status) {
+                    UIkit.notify({
+                        message: message,
+                        status: status,
+                        timeout: 5000,
+                    });
+                }
             });
         };
 
