@@ -63,7 +63,7 @@ altairApp
                     controller: 'HomeController',
                     data: {
                         pageTitle: 'Dashboard',
-                        permissions: ['ACTIVE'],
+                        permissions: ['HAS_PROFILE', 'ACTIVE'],
                         redirectTo: 'restricted.professionals.profile'
                     }
                 });
