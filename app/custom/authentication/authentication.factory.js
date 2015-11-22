@@ -62,7 +62,7 @@
             resetPassword: function(credentials) {
                 var deferred = $q.defer();
                 $http.post(
-                    apiFormat.fmtV1url('/reset-password/'),
+                    apiFormat.fmtV1url('/auth/reset-password/'),
                     credentials).then(function (response) {
                         if (response.status !== 200) {
                             deferred.reject(response);
