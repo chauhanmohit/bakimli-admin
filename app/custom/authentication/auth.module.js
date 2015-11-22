@@ -5,9 +5,9 @@
         'ui.router',
         'ngStorage',
         'bakimliUtils'
-        ]).run(['$rootScope', '$state', 'AuthFactory', 'AuthorizationFactory', runFn]);
+        ]).run(['$rootScope', '$state', '$log', 'AuthFactory', 'AuthorizationFactory', runFn]);
 
-    function runFn($rootScope, $state, authFactory, authorization) {
+    function runFn($rootScope, $state, $log, authFactory, authorization) {
         authFactory.reloadProfile();
         $rootScope.$on('$stateChangeStart', function(event, stateTo, paramsTo, stateFrom, paramsFrom) {
             if (!stateTo.data) {
@@ -18,18 +18,20 @@
                 $state.go('login');
                 return;
             }
+            if (!stateTo.data.permissions) {
+                return;
+            }
             var permissionMatch = authorization.hasPermissionForState(stateTo, paramsTo);
             if (permissionMatch && !permissionMatch.status) {
                 event.preventDefault();
+                var redirectToState = 'login';
                 if (typeof stateTo.data.redirectTo === 'string') {
-                    $state.go(stateTo.data.redirectTo);
-                    return;
+                    redirectToState = stateTo.data.redirectTo;
+                } else if (typeof stateTo.data.redirectTo === 'object' && stateTo.data.redirectTo.hasOwnProperty(permissionMatch.permission)) {
+                    redirectToState = stateTo.data.redirectTo[permissionMatch.permission];
                 }
-                if (typeof stateTo.data.redirectTo === 'object' && stateTo.data.redirectTo.hasOwnProperty(permissionMatch.permission)) {
-                    $state.go(stateTo.data.redirectTo[permissionMatch.permission]);
-                    return;
-                }
-                $state.go('login');
+                $log.debug('User ', $rootScope.user, ' has no permission <', permissionMatch.permission, '> for the state ', stateTo.name, '. Redirecting to ', redirectToState);
+                $state.go(redirectToState);
                 return;
             }
         });
