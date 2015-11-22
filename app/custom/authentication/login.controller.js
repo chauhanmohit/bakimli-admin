@@ -59,14 +59,14 @@
                 var message, status;
                 if (response.status === 400) {
                     status = 'warning';
+                    message = 'Please provide valid data and try again.';
                     if ('email' in response.data) {
                         // Using own messages rather than DRF's due to localization
                         message = [
                             'An user is already registered with this email.',
-                            'Please try another email or login.'
+                            'Please try another email or login with your email.'
                             ].join('');
                     }
-                    message = 'Please provide valid data and try again.';
                 }
                 if (message && status) {
                     UIkit.notify({
