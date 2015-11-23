@@ -29,8 +29,8 @@
                 resolve: {
                     deps: ['$ocLazyLoad', function($ocLazyLoad) {
                         return $ocLazyLoad.load([
-                            'lazy_parsleyjs'
-                        ]);
+                            'lazy_wizard'
+                        ], {serie: true});
                     }]
                 }
             });
