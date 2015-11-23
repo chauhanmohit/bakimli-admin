@@ -47,33 +47,5 @@
                     </div>
                 </form>
             </div>
-            <div class="md-card-content large-padding" id="register_form" style="display: none">
-                <button type="button" class="uk-position-top-right uk-close uk-margin-right uk-margin-top back_to_login" ng-click="loginCtrl.backToLogin($event)"></button>
-                <h2 class="heading_a uk-margin-medium-bottom">Create an account</h2>
-                <form b-activate-parsley="" name="signupForm" ng-submit="loginCtrl.createAccount(signupForm)">
-                    <div class="uk-form-row">
-                        <label for="register_username">Email</label>
-                        <input class="md-input" type="email" id="register_username" ng-model="loginCtrl.signupModel.email" md-input required />
-                    </div>
-                    <div class="uk-form-row">
-                        <label for="register_name">Name</label>
-                        <input class="md-input" type="text" id="register_name" ng-model="loginCtrl.signupModel.name" md-input required />
-                    </div>
-                    <div class="uk-form-row">
-                        <label for="register_password">Password</label>
-                        <input class="md-input" type="password" id="register_password" ng-model="loginCtrl.signupModel.password1" md-input />
-                    </div>
-                    <div class="uk-form-row">
-                        <label for="register_password_repeat">Repeat Password</label>
-                        <input class="md-input" type="password" id="register_password_repeat" ng-model="register_password_repeat" md-input data-parsley-equalto="#register_password" />
-                    </div>
-                    <div class="uk-margin-medium-top">
-                        <button type="submit" class="md-btn md-btn-primary md-btn-block md-btn-large">Sign Up</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="uk-margin-top uk-text-center">
-            <a href="#" id="signup_form_show" ng-hide="registerFormActive" ng-click="loginCtrl.registerForm($event)">Create an account</a>
         </div>
     </div>
