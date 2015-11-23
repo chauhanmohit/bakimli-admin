@@ -10,6 +10,8 @@ var altairApp = angular.module('altairApp', [
     'ngAnimate',
     'ngRetina',
     'ConsoleLogger',
+    'bakimliMenu',
+    'bakimliDashboard',
     'bakimliHome',
     'bakimliAuth',
     'bakimliProfessionals'
