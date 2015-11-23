@@ -3,7 +3,6 @@
 
         <div class="md-card uk-margin-large-bottom">
             <div class="md-card-content">
-                <form id="wizard_advanced_form" class="uk-form-stacked" name="signupUserForm">
                     <wizard edit-mode="true" on-finish="finishedWizard()" template="app/templates/wizard.tpl.html">
                         <wz-step canexit="signupCtrl.isUserValid" title="Sign Up New User" template="app/templates/wizard.step.tpl.html">
                             <h2 class="heading_a">
@@ -11,37 +10,96 @@
                                 <span class="sub-heading">Create your professional profile to benefit from a great set of tools on 724bakimli.com</span>
                             </h2>
                             <hr class="md-hr"/>
-                            <div class="uk-grid">
-                                <div class="uk-width-medium-1-1 parsley-row">
-                                    <label for="wizard_fullname">Full Name</label>
-                                    <input type="text" name="wizard_fullname" id="wizard_fullname" required class="md-input"  md-input ng-model="signupCtrl.user.name" />
+                            <form id="wizard_advanced_form" class="uk-form-stacked" name="signupUserForm">
+                                <div class="uk-grid">
+                                    <div class="uk-width-medium-1-1 parsley-row">
+                                        <label for="wizard_fullname">Full Name</label>
+                                        <input type="text" name="wizard_fullname" id="wizard_fullname" required class="md-input"  md-input ng-model="signupCtrl.user.name" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="uk-grid">
-                                <div class="uk-width-medium-1-1 parsley-row">
-                                    <label for="wizard_email">Email</label>
-                                    <input type="email" name="wizard_email" id="wizard_email" required class="md-input"  md-input ng-model="signupCtrl.user.email" />
+                                <div class="uk-grid">
+                                    <div class="uk-width-medium-1-1 parsley-row">
+                                        <label for="wizard_email">Email</label>
+                                        <input type="email" name="wizard_email" id="wizard_email" required class="md-input"  md-input ng-model="signupCtrl.user.email" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="uk-grid">
-                                <div class="uk-width-medium-1-1 parsley-row">
-                                    <label for="wizard_password">Password</label>
-                                    <input type="password" name="wizard_password" id="wizard_password" required class="md-input"  md-input ng-model="signupCtrl.user.password1" />
+                                <div class="uk-grid">
+                                    <div class="uk-width-medium-1-1 parsley-row">
+                                        <label for="wizard_password">Password</label>
+                                        <input type="password" name="wizard_password" id="wizard_password" required class="md-input"  md-input ng-model="signupCtrl.user.password1" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="uk-clearfix uk-margin-large-top">
-                                <button class="md-btn md-btn-primary uk-float-right" type="submit" validate-wz-next>Continue</button>
-                            </div>
+                                <div class="uk-clearfix uk-margin-large-top">
+                                    <button class="md-btn md-btn-primary uk-float-right" type="submit" validate-wz-next>Continue</button>
+                                </div>
+                            </form>
                         </wz-step>
                         <wz-step title="Basic Info" template="app/templates/wizard.step.tpl.html">
+                            <h2 class="heading_a">
+                                Basic information
+                                <span class="sub-heading">Provide your basic information</span>
+                            </h2>
+                            <hr class="md-hr"/>
+                            <form id="wizard_advanced_form" class="uk-form-stacked" name="signupUserForm">
+                                <div class="uk-grid">
+                                    <div class="uk-width-medium-1-1 parsley-row">
+                                        <label for="wizard_name">Name</label>
+                                        <input type="text" name="wizard_name" id="wizard_name" required class="md-input"  md-input ng-model="signupCtrl.user.name" />
+                                    </div>
+                                </div>
+                                <div class="uk-grid">
+                                    <div class="uk-width-medium-1-1 parsley-row">
+                                        <label for="wizard_pro_title">Title</label>
+                                        <input type="text" name="wizard_pro_title" id="wizard_pro_title" required class="md-input"  md-input ng-model="signupCtrl.professional.title" />
+                                    </div>
+                                </div>
+                                <div class="uk-grid">
+                                    <div class="uk-width-medium-1-1 parsley-row">
+                                        <label for="wizard_pro_salon">Salon</label>
+                                        <input type="text" name="wizard_pro_salon" id="wizard_pro_salon" required class="md-input"  md-input ng-model="signupCtrl.professional.salon" />
+                                    </div>
+                                </div>
+                                <div class="uk-clearfix uk-margin-large-top">
+                                    <button class="md-btn md-btn-primary uk-float-right" type="submit" validate-wz-next>Continue</button>
+                                </div>
+                            </form>
                         </wz-step>
                         <wz-step title="Contact Info" template="app/templates/wizard.step.tpl.html">
+                            <hr class="md-hr"/>
+                            <form id="wizard_advanced_form" class="uk-form-stacked" name="signupUserForm">
+                                <div class="uk-grid">
+                                    <div class="uk-width-medium-1-1 parsley-row">
+                                        <label for="wizard_contact_phone">Phone</label>
+                                        <input type="text" name="wizard_contact_phone" id="wizard_contact_phone" required class="md-input"  md-input ng-model="signupCtrl.contactInfo.phone" />
+                                    </div>
+                                </div>
+                                <div class="uk-grid">
+                                    <div class="uk-width-medium-1-1 parsley-row">
+                                        <label for="wizard_contact_address">Address</label>
+                                        <input type="email" name="wizard_contact_address" id="wizard_contact_address" required class="md-input"  md-input ng-model="signupCtrl.contactInfo.address" />
+                                    </div>
+                                </div>
+                                <div class="uk-grid">
+                                    <div class="uk-width-medium-1-1 parsley-row">
+                                        <label for="wizard_contact_zip">Postal code</label>
+                                        <input type="email" name="wizard_contact_zip" id="wizard_contact_zip" required class="md-input"  md-input ng-model="signupCtrl.contactInfo.postal_code" />
+                                    </div>
+                                </div>
+                                <div class="uk-grid">
+                                    <div class="uk-width-medium-1-1 parsley-row">
+                                        <label for="wizard_contact_district">District</label>
+                                        <input type="password" name="wizard_contact_district" id="wizard_contact_district" required class="md-input"  md-input ng-model="signupCtrl.contactInfo.district" />
+                                    </div>
+                                </div>
+                                <div class="uk-clearfix uk-margin-large-top">
+                                    <button class="md-btn md-btn-primary uk-float-right" type="submit" validate-wz-next>Finish</button>
+                                </div>
+                            </form>
                         </wz-step>
                         <wz-step title="Application Status" template="app/templates/wizard.step.tpl.html">
                         </wz-step>
                     </wizard>
 
-                </form>
             </div>
         </div>
 
