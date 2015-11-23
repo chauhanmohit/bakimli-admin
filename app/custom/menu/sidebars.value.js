@@ -11,7 +11,7 @@
             {
                 title: 'Sign Up',
                 icon: '&#xE7FE;',
-                link: 'signup'
+                link: 'app.signup'
             },
             {
                 title: 'Blog',
