@@ -11,8 +11,13 @@
             controller: 'DashboardController as dashboardCtrl',
             templateUrl: '/app/views/dashboard/index.html',
             data: {
-                isPrivate: true,
-                pageTitle: 'Login'
+                pageTitle: 'Dashboard',
+                permissions: ['IS_AUTHENTICATED', 'HAS_PROFILE', 'IS_ACTIVE'],
+                redirectTo: {
+                    'IS_AUTHENTICATED': 'app.signup',
+                    'HAS_PROFILE': 'app.signup',
+                    'IS_ACTIVE': 'app.professionals.profileStatus'
+                }
             }
         });
     }
