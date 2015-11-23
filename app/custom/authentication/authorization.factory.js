@@ -6,6 +6,15 @@
         ]);
 
     function authorizationFn($rootScope, permissions) {
+        var isAnonymous = function () {
+                return !$rootScope.user;
+            },
+            hasAccount = function () {
+                return (!isAnonymous()) && $rootScope.user.professional;
+            },
+            isActive = function () {
+                return hasAccount() && $rootScope.user.professional.is_active;
+            };
         return {
             hasPermissionForState: function (toState, toParams) {
                 var result = true, permission;
@@ -24,7 +33,9 @@
                     status: result,
                     permission: permission
                 };
-            }
+            },
+            isActive: isActive,
+            isAnonymous: isAnonymous
         };
     }
 })();
