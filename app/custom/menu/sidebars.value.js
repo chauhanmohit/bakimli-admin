@@ -31,6 +31,32 @@
                 link: 'app.dashboard'
             },
             {
+                title: 'Profile',
+                icon: '&#xE871;',
+                submenu: [
+                    {
+                        title: 'Basic info',
+                        link: 'app.professionals.profile({view:"basic"})'
+                    },
+                    {
+                        title: 'Contact info',
+                        link: 'app.professionals.profile({view:"contacts"})'
+                    },
+                    {
+                        title: 'Photos',
+                        link: 'app.professionals.profile({view:"photos"})'
+                    },
+                    {
+                        title: 'Products',
+                        link: 'app.professionals.profile({view:"products"})'
+                    },
+                    {
+                        title: 'Services',
+                        link: 'app.professionals.profile({view:"services"})'
+                    }
+                ]
+            },
+            {
                 title: 'Blog',
                 icon: '&#xE0BF;',
                 link: 'app.blog.index'
