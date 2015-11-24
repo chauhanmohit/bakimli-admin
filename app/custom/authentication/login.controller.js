@@ -13,7 +13,7 @@
                 return;
             }
             authFactory.login(self.model).then(function (response) {
-                $state.go('restricted.home');
+                $state.go('app.dashboard');
             }, function(response) {
                 var message;
                 if (response.status === 400) {
