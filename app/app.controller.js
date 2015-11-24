@@ -101,7 +101,9 @@ angular
         '$timeout',
         '$scope',
         '$rootScope',
-        function ($timeout,$scope,$rootScope) {
+        'Sidebars',
+        'AuthorizationFactory',
+        function ($timeout,$scope,$rootScope, sidebars, authorization) {
 
             $scope.$on('onLastRepeat', function (scope, element, attrs) {
                 $timeout(function() {
@@ -154,32 +156,13 @@ angular
                     $('#lang_switcher').next().children('.selectize-input').find('input').attr('readonly',true);
                 }
             };
-
-            // menu entries
-            $scope.sections = [
-                {
-                    id: 0,
-                    title: 'Home',
-                    icon: '&#xE871;',
-                    link: 'restricted.home'
-                },
-                {
-                    id: 1,
-                    title: 'User Profile',
-                    icon: '&#xE87C;',
-                    submenu: [
-                        {
-                            title: 'View profile',
-                            link: 'restricted.professionals.profile',
-                        },
-                        {
-                            title: 'Edit profile',
-                            link: 'restricted.professionals.edit'
-                        }
-                    ]
-                },
-
-            ];
+            if (authorization.isActive()) {
+                $scope.sections = sidebars.activeUser;
+            } else if (authorization.isAnonymous()) {
+                $scope.sections = sidebars.anonymousUser;
+            } else {
+                $scope.sections = sidebars.inactiveUser;
+            }
 
         }
     ])

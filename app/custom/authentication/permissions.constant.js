@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('bakimliAuth').constant('Permissions', {
-        ACTIVE: function (user, toState, toParams) {
+        IS_ACTIVE: function (user, toState, toParams) {
             if (!(user.professional && typeof user.professional === 'object')) {
                 return false;
             }
@@ -10,6 +10,9 @@
                 return false;
             }
             return true;
+        },
+        IS_AUTHENTICATED: function (user, toState, toParams) {
+            return !!user;
         },
         HAS_PROFILE: function (user, toState, toParams) {
             return typeof user.professional === 'object' && user.professional;

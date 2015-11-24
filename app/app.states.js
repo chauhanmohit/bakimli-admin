@@ -25,12 +25,9 @@ altairApp
                     url: "/500",
                     templateUrl: 'app/components/pages/error_500View.html'
                 })
-                .state("restricted", {
+                .state('app', {
                     abstract: true,
-                    url: "",
-                    data: {
-                        isPrivate: true
-                    },
+                    url: '',
                     views: {
                         'main_header': {
                             templateUrl: 'app/shared/header/headerView.html',
@@ -41,7 +38,7 @@ altairApp
                             controller: 'main_sidebarCtrl'
                         },
                         '': {
-                            templateUrl: 'app/views/restricted.html'
+                            templateUrl: 'app/views/app.html'
                         }
                     },
                     resolve: {
@@ -55,16 +52,6 @@ altairApp
                                 'lazy_style_switcher'
                             ],{ serie: true });
                         }]
-                    }
-                })
-                .state("restricted.home", {
-                    url: "/",
-                    templateUrl: 'app/views/home/index.html',
-                    controller: 'HomeController',
-                    data: {
-                        pageTitle: 'Dashboard',
-                        permissions: ['HAS_PROFILE', 'ACTIVE'],
-                        redirectTo: 'restricted.professionals.profile'
                     }
                 });
         }
