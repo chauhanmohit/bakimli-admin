@@ -44,7 +44,7 @@
                     },
                     {
                         title: 'Photos',
-                        link: 'app.professionals.profile({view:"photos"})'
+                        link: 'app.professionals.photos'
                     },
                     {
                         title: 'Products',

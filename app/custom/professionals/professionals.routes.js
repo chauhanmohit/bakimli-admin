@@ -10,7 +10,8 @@
             url: "/professionals",
             template: '<ui-view />',
             data: {
-                pageTitle: 'Professionals'
+                pageTitle: 'Professionals',
+                permissions: ['HAS_PROFILE', 'IS_APPROVED']
             },
             abstract: true
         }).state('app.professionals.profile', {
@@ -18,8 +19,19 @@
             templateUrl: '/app/views/professionals/profile.html',
             controller: 'ProfessionalProfileController as professionalCtrl',
             data: {
-                pageTitle: "Professional's profile",
-                permissions: ['HAS_PROFILE', 'IS_APPROVED']
+                pageTitle: "Professional's profile"
+            },
+            resolve: {
+                professional: ['$rootScope', 'Professionals', function ($rootScope, professionals) {
+                    return professionals.get($rootScope.user.professional.pk);
+                }]
+            }
+        }).state('app.professionals.photos', {
+            url: '/photos',
+            templateUrl: '/app/views/professionals/photos.html',
+            controller: 'PhotosController as photosCtrl',
+            data: {
+                pageTitle: "Professional's profile"
             },
             resolve: {
                 professional: ['$rootScope', 'Professionals', function ($rootScope, professionals) {
