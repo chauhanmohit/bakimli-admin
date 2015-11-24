@@ -16,7 +16,7 @@
                 redirectTo: {
                     'IS_AUTHENTICATED': 'app.signup',
                     'HAS_PROFILE': 'app.signup',
-                    'IS_ACTIVE': 'app.professionals.profileStatus'
+                    'IS_ACTIVE': 'app.signup'
                 }
             }
         });
