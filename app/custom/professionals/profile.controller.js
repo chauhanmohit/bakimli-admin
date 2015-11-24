@@ -7,7 +7,6 @@
 
     function professionalCtrl($state, $stateParams, professional, professionalPhotos) {
         var self = this;
-        self.activeTab = $stateParams.view || 'basic';
         self.professional = professional;
     }
 })();

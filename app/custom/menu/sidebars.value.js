@@ -35,12 +35,8 @@
                 icon: '&#xE871;',
                 submenu: [
                     {
-                        title: 'Basic info',
-                        link: 'app.professionals.profile({view:"basic"})'
-                    },
-                    {
-                        title: 'Contact info',
-                        link: 'app.professionals.profile({view:"contacts"})'
+                        title: 'Info',
+                        link: 'app.professionals.profile'
                     },
                     {
                         title: 'Photos',
