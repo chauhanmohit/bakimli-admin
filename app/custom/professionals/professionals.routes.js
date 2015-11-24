@@ -6,20 +6,19 @@
         ]);
 
     function configFn($stateProvider) {
-        $stateProvider.state("restricted.professionals", {
+        $stateProvider.state("app.professionals", {
             url: "/professionals",
             template: '<ui-view />',
             data: {
                 pageTitle: 'Professionals'
             },
             abstract: true
-        }).state('restricted.professionals.profile', {
-            url: '/profile',
+        }).state('app.professionals.profile', {
+            url: '/profile?view',
             templateUrl: '/app/views/professionals/profile.html',
             controller: 'ProfessionalProfileController as professionalCtrl',
             data: {
                 pageTitle: "Professional's profile",
-                redirectTo: 'restricted.professionals.edit',
                 permissions: ['HAS_PROFILE', 'IS_APPROVED']
             },
             resolve: {
