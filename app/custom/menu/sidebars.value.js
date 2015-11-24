@@ -21,7 +21,7 @@
             {
                 title: 'Help Center',
                 icon: '&#xE887;',
-                link: 'app.help'
+                link: 'app.home.help'
             }
         ],
         activeUser: [
@@ -31,6 +31,28 @@
                 link: 'app.dashboard'
             },
             {
+                title: 'Profile',
+                icon: '&#xE871;',
+                submenu: [
+                    {
+                        title: 'Info',
+                        link: 'app.professionals.profile'
+                    },
+                    {
+                        title: 'Photos',
+                        link: 'app.professionals.photos'
+                    },
+                    {
+                        title: 'Products',
+                        link: 'app.professionals.profile({view:"products"})'
+                    },
+                    {
+                        title: 'Services',
+                        link: 'app.professionals.profile({view:"services"})'
+                    }
+                ]
+            },
+            {
                 title: 'Blog',
                 icon: '&#xE0BF;',
                 link: 'app.blog.index'
@@ -38,7 +60,7 @@
             {
                 title: 'Help Center',
                 icon: '&#xE887;',
-                link: 'app.help'
+                link: 'app.home.help'
             }
         ],
         inactiveUser: [
@@ -55,7 +77,7 @@
             {
                 title: 'Help Center',
                 icon: '&#xE887;',
-                link: 'app.help'
+                link: 'app.home.help'
             }
         ]
     });

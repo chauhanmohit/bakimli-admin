@@ -18,68 +18,85 @@
                         </a>
                     </div>
                     <div class="user_content">
-                        <ul id="user_profile_tabs" class="uk-tab" data-uk-tab="{connect:'#user_profile_tabs_content', animation:'slide-horizontal'}" data-uk-sticky="{ top: 48, media: 960 }">
-                            <li class="uk-active"><a href="#">About</a></li>
-                            <li><a href="#">Photos</a></li>
-                        </ul>
-                        <ul id="user_profile_tabs_content" class="uk-switcher uk-margin">
-                            <li>
-                                {{ ::professionalCtrl.professional.description }}
-                                <div class="uk-grid uk-margin-medium-top uk-margin-large-bottom" data-uk-grid-margin>
-                                    <div class="uk-width-large-1-2">
-                                        <h4 class="heading_c uk-margin-small-bottom">Contact Info</h4>
-                                        <ul class="md-list md-list-addon">
-                                            <li>
-                                                <div class="md-list-addon-element">
-                                                    <i class="md-list-addon-icon material-icons">&#xE0CD;</i>
-                                                </div>
-                                                <div class="md-list-content">
-                                                    <span class="md-list-heading">{{ ::professionalCtrl.phone_number }}</span>
-                                                    <span class="uk-text-small uk-text-muted">Phone</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="md-list-addon-element">
-                                                    <i class="md-list-addon-icon uk-icon-facebook-official"></i>
-                                                </div>
-                                                <div class="md-list-content">
-                                                    <span class="md-list-heading">{{ ::professionalCtrl.facebook_url }}</span>
-                                                    <span class="uk-text-small uk-text-muted">Facebook</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="md-list-addon-element">
-                                                    <i class="md-list-addon-icon uk-icon-twitter"></i>
-                                                </div>
-                                                <div class="md-list-content">
-                                                    <span class="md-list-heading">{{ ::professionalCtrl.twitter_url }}</span>
-                                                    <span class="uk-text-small uk-text-muted">Twitter</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="md-list-addon-element">
-                                                    <i class="md-list-addon-icon uk-icon-instagram"></i>
-                                                </div>
-                                                <div class="md-list-content">
-                                                    <span class="md-list-heading">{{ ::professionalCtrl.instagram_url }}</span>
-                                                    <span class="uk-text-small uk-text-muted">Instagram</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="md-list-addon-element">
-                                                    <i class="md-list-addon-icon uk-icon-link"></i>
-                                                </div>
-                                                <div class="md-list-content">
-                                                    <span class="md-list-heading">{{ ::professionalCtrl.website_url }}</span>
-                                                    <span class="uk-text-small uk-text-muted">Website</span>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
+                        <h3 class="full_width_in_card heading_c">
+                            Description
+                        </h3>
+                        {{ ::professionalCtrl.professional.description }}
+                        <div class="uk-grid uk-margin-medium-top uk-margin-large-bottom" data-uk-grid-margin ng-if="::professionalCtrl.professional.salon.name">
+                            <div class="uk-width-1-1">
+                                <h3 class="full_width_in_card heading_c">
+                                    Salon
+                                </h3>
+                                <p>{{ ::professionalCtrl.professional.salon.name }}</p>
+                            </div>
+                        </div>
+                        <div class="uk-grid uk-margin-medium-top uk-margin-large-bottom" data-uk-grid-margin>
+                            <div class="uk-width-large-1-2">
+                                <h3 class="full_width_in_card heading_c">
+                                    Address
+                                </h3>
+                                <h4 class="heading_c uk-margin-small-bottom">District</h4>
+                                <p class="uk-text-muted">{{ ::professionalCtrl.professional.district.full_name }}</p>
+                                <div ng-if="::professionalCtrl.professional.postal_code">
+                                    <h4 class="heading_c uk-margin-small-bottom">Postal code/ZIP</h4>
+                                    <p class="uk-text-muted">{{ ::professionalCtrl.professional.postal_code }}</p>
                                 </div>
-                            </li>
-                            <li></li>
-                        </ul>
+                                <h4 class="heading_c uk-margin-small-bottom">Address</h4>
+                                <p class="uk-text-muted">{{ ::professionalCtrl.professional.address }}</p>
+                            </div>
+                            <div class="uk-width-large-1-2">
+                                <h3 class="full_width_in_card heading_c">
+                                    Contacts
+                                </h3>
+                                <ul class="md-list md-list-addon">
+                                    <li ng-if="::professionalCtrl.professional.phone_number">
+                                        <div class="md-list-addon-element">
+                                            <i class="md-list-addon-icon material-icons">&#xE0CD;</i>
+                                        </div>
+                                        <div class="md-list-content">
+                                            <span class="md-list-heading">{{ ::professionalCtrl.professional.phone_number }}</span>
+                                            <span class="uk-text-small uk-text-muted">Phone</span>
+                                        </div>
+                                    </li>
+                                    <li ng-if="::professionalCtrl.professional.facebook_url">
+                                        <div class="md-list-addon-element">
+                                            <i class="md-list-addon-icon uk-icon-facebook-official"></i>
+                                        </div>
+                                        <div class="md-list-content">
+                                            <span class="md-list-heading">{{ ::professionalCtrl.professional.facebook_url }}</span>
+                                            <span class="uk-text-small uk-text-muted">Facebook</span>
+                                        </div>
+                                    </li>
+                                    <li ng-if="::professionalCtrl.professional.twitter_url">
+                                        <div class="md-list-addon-element">
+                                            <i class="md-list-addon-icon uk-icon-twitter"></i>
+                                        </div>
+                                        <div class="md-list-content">
+                                            <span class="md-list-heading">{{ ::professionalCtrl.professional.twitter_url }}</span>
+                                            <span class="uk-text-small uk-text-muted">Twitter</span>
+                                        </div>
+                                    </li>
+                                    <li ng-if="::professionalCtrl.professional.instagram_url">
+                                        <div class="md-list-addon-element">
+                                            <i class="md-list-addon-icon uk-icon-instagram"></i>
+                                        </div>
+                                        <div class="md-list-content">
+                                            <span class="md-list-heading">{{ ::professionalCtrl.professional.instagram_url }}</span>
+                                            <span class="uk-text-small uk-text-muted">Instagram</span>
+                                        </div>
+                                    </li>
+                                    <li ng-if="::professionalCtrl.professional.website_url">
+                                        <div class="md-list-addon-element">
+                                            <i class="md-list-addon-icon uk-icon-link"></i>
+                                        </div>
+                                        <div class="md-list-content">
+                                            <span class="md-list-heading">{{ ::professionalCtrl.professional.website_url }}</span>
+                                            <span class="uk-text-small uk-text-muted">Website</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

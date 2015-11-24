@@ -1,5 +1,5 @@
 (function() {
     'use strict';
 
-    angular.module('bakimliHome', []);
+    angular.module('bakimliHome', ['ui.router']);
 })();

@@ -6,21 +6,32 @@
         ]);
 
     function configFn($stateProvider) {
-        $stateProvider.state("restricted.professionals", {
+        $stateProvider.state("app.professionals", {
             url: "/professionals",
             template: '<ui-view />',
             data: {
-                pageTitle: 'Professionals'
+                pageTitle: 'Professionals',
+                permissions: ['HAS_PROFILE', 'IS_APPROVED']
             },
             abstract: true
-        }).state('restricted.professionals.profile', {
-            url: '/profile',
+        }).state('app.professionals.profile', {
+            url: '/profile?view',
             templateUrl: '/app/views/professionals/profile.html',
             controller: 'ProfessionalProfileController as professionalCtrl',
             data: {
-                pageTitle: "Professional's profile",
-                redirectTo: 'restricted.professionals.edit',
-                permissions: ['HAS_PROFILE', 'IS_APPROVED']
+                pageTitle: "Professional's profile"
+            },
+            resolve: {
+                professional: ['$rootScope', 'Professionals', function ($rootScope, professionals) {
+                    return professionals.get($rootScope.user.professional.pk);
+                }]
+            }
+        }).state('app.professionals.photos', {
+            url: '/photos',
+            templateUrl: '/app/views/professionals/photos.html',
+            controller: 'PhotosController as photosCtrl',
+            data: {
+                pageTitle: "Professional's profile"
             },
             resolve: {
                 professional: ['$rootScope', 'Professionals', function ($rootScope, professionals) {

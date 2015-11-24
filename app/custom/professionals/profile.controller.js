@@ -2,12 +2,11 @@
     'use strict';
 
     angular.module('bakimliProfessionals').controller('ProfessionalProfileController', [
-        'professional', professionalCtrl
+        '$state', '$stateParams', 'professional', 'ProfessionalPhotos', professionalCtrl
         ]);
 
-    function professionalCtrl(professional) {
+    function professionalCtrl($state, $stateParams, professional, professionalPhotos) {
         var self = this;
-
         self.professional = professional;
     }
 })();

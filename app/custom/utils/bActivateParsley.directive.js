@@ -9,7 +9,12 @@
         return {
             restrict: 'A',
             link: function(scope, element) {
-                $(element).parsley().on('form:validated',function() {
+                var $form = $(element).parsley();
+                $form.on('form:submit', function (form) {
+                    form.submitEvent.preventDefault();
+                    return false;
+                });
+                $form.on('form:validated',function() {
                     scope.$apply();
                 }).on('field:validated',function(parsleyField) {
                     if($(parsleyField.$element).hasClass('md-input')) {
