@@ -2,10 +2,12 @@
     'use strict';
 
     angular.module('bakimliProfessionals').controller('ProfessionalUpdateController', [
-        '$state', '$stateParams', 'Professionals', 'FormUtils', 'Salons', 'Districts', 'professional', 'AuthFactory', professionalCtrl
+        '$rootScope', '$state', '$stateParams', 'Professionals',
+        'FormUtils', 'Salons', 'Districts', 'professional', 'AuthFactory', 'ProfessionalPhotos', professionalCtrl
         ]);
 
-    function professionalCtrl($state, $stateParams, professionals, formUtils, salons, districts, professional, authFactory) {
+    function professionalCtrl($rootScope, $state, $stateParams, professionals, formUtils,
+            salons, districts, professional, authFactory, professionalPhotos) {
         var self = this;
 
         salons.query(null, function(result) {
@@ -87,10 +89,44 @@
 
         if (professional) {
             setupProfessional(self, professional);
-            self.profileInReview = true;
+            if ($rootScope.user.professional.inactive_status === 'needs_approval') {
+                self.profileInReview = true;
+            } else {
+                setupPhotos(professionalPhotos, self, professional);
+            }
         } else {
             self.newProfile = true;
         }
+
+        self.removePhoto = function(photo) {
+            UIkit.modal.confirm("Are you sure?", function(){
+                professionalPhotos.remove({photoId: photo.pk}).$promise.then(function() {
+                    setupPhotos(professionalPhotos, self, professional);
+                });
+            });
+        };
+
+        self.editPhoto = function(photo) {
+            UIkit.modal.prompt("Description", photo.description, function(newDescription) {
+                if (newDescription === photo.description) {
+                    return;
+                }
+                professionalPhotos.update({photoId: photo.pk}, {description: newDescription}).$promise.then(function() {
+                    setupPhotos(professionalPhotos, self, professional);
+                });
+            });
+        };
+    }
+
+    function setupPhotos (professionalPhotos, ctrl, professional) {
+        ctrl.gallery = {
+            images: []
+        };
+
+        professionalPhotos.query({professional: professional.pk}, function (result) {
+            ctrl.gallery.images = result.results;
+            ctrl.gallery.total = result.count;
+        });
     }
 
     function setupProfessional(ctrl, professional) {

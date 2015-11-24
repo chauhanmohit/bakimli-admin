@@ -19,6 +19,20 @@
                         ]);
                     }]
                 },
+            }).state('app.signup', {
+                url: '/signup',
+                templateUrl: 'app/views/auth/signup-wizard.html',
+                controller: 'SignupController as signupCtrl',
+                data: {
+                    pageTitle: 'Sign Up'
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'lazy_wizard'
+                        ], {serie: true});
+                    }]
+                }
             });
     }]);
 })();
