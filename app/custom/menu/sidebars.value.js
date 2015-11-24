@@ -45,7 +45,7 @@
             {
                 title: 'Professional Profile',
                 icon: '&#xE851;',
-                link: 'app.professional.wizard'
+                link: 'app.signup'
             },
             {
                 title: 'Blog',
