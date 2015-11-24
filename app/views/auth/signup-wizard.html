@@ -20,7 +20,7 @@
                             <div class="uk-grid">
                                 <div class="uk-width-medium-1-1 parsley-row">
                                     <label for="wizard_email">Email</label>
-                                    <input type="email" name="wizard_email" id="wizard_email" required class="md-input"  md-input ng-model="signupCtrl.user.email" />
+                                    <input type="email" name="wizard_email" id="wizard_email" required class="md-input"  md-input ng-model="signupCtrl.user.email" data-parsley-remote="{{ ::signupCtrl.emailValidationURL }}?value={value}" />
                                 </div>
                             </div>
                             <div class="uk-grid">

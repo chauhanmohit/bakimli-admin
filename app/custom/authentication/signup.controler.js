@@ -2,12 +2,13 @@
     'use strict';
 
     angular.module('bakimliAuth').controller('SignupController', [
-        'Salons', 'Districts', signupCtrl
+        '$q', 'APIFormat', 'Salons', 'Districts', signupCtrl
         ]);
 
-    function signupCtrl(salons, districts) {
+    function signupCtrl($q, apiFormat, salons, districts) {
         var self = this;
 
+        self.emailValidationURL = apiFormat.fmtV1url('/auth/check-email/');
         self.user = {}; // user model
         self.professional = {}; // base professional fields
         self.contactInfo = {}; // contact fields
@@ -48,9 +49,14 @@
         });
 
         self.isUserValid = function () {
+            var deferred = $q.defer();
             var form = $("#wizard_advanced_form").parsley();
-            form.validate();
-            return form.isValid();
+            form.whenValidate().then(function () {
+                deferred.resolve(true);
+            }, function () {
+                deferred.reject();
+            });
+            return deferred.promise;
         };
 
         self.checkSalon = function (pk) {
