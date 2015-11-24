@@ -21,7 +21,7 @@
             {
                 title: 'Help Center',
                 icon: '&#xE887;',
-                link: 'app.help'
+                link: 'app.home.help'
             }
         ],
         activeUser: [
@@ -38,7 +38,7 @@
             {
                 title: 'Help Center',
                 icon: '&#xE887;',
-                link: 'app.help'
+                link: 'app.home.help'
             }
         ],
         inactiveUser: [
@@ -55,7 +55,7 @@
             {
                 title: 'Help Center',
                 icon: '&#xE887;',
-                link: 'app.help'
+                link: 'app.home.help'
             }
         ]
     });
