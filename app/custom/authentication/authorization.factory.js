@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('bakimliAuth').factory('AuthorizationFactory', [
-        '$rootScope', 'Permissions', authorizationFn
+        '$rootScope', '$localStorage','Permissions', authorizationFn
         ]);
 
-    function authorizationFn($rootScope, permissions) {
+    function authorizationFn($rootScope, $localStorage, permissions) {
         var isAnonymous = function () {
                 return !$rootScope.user;
             },
@@ -14,10 +14,19 @@
             },
             isActive = function () {
                 return hasAccount() && $rootScope.user.professional.is_active;
+            },
+            getUser = function () {
+                var user = $rootScope.user;
+                if (!user) {
+                    user = $localStorage.user;
+                    $rootScope.user = user;
+                }
+                return user;
             };
         return {
             hasPermissionForState: function (toState, toParams) {
                 var result = true, permission;
+                var user = getUser();
                 if (toState.data.permissions) {
                     for (var i = 0; i < toState.data.permissions.length; i++) {
                         if (permissions.hasOwnProperty(toState.data.permissions[i])) {
@@ -35,6 +44,7 @@
                 };
             },
             isActive: isActive,
+            hasProfile: hasAccount,
             isAnonymous: isAnonymous
         };
     }
