@@ -3,8 +3,8 @@
 
         <div class="md-card uk-margin-large-bottom">
             <div class="md-card-content">
-                <wizard edit-mode="true" on-finish="finishedWizard()" template="app/templates/wizard.tpl.html">
-                    <wz-step canexit="signupCtrl.isUserValid" title="Sign Up New User" template="app/templates/wizard.step.tpl.html">
+                <wizard edit-mode="true" on-finish="signupCtrl.finishSignup()" template="app/templates/wizard.tpl.html" current="signupCtrl.currentStep">
+                    <wz-step canexit="signupCtrl.isUserValid" title="Sign Up New User" template="app/templates/wizard.step.tpl.html" canenter="signupCtrl.canEnterUserInfo">
                         <h2 class="heading_a">
                             Sign Up
                             <span class="sub-heading">Create your professional profile to benefit from a great set of tools on 724bakimli.com</span>
@@ -34,7 +34,7 @@
                             </div>
                         </form>
                     </wz-step>
-                    <wz-step title="Basic Info" template="app/templates/wizard.step.tpl.html">
+                    <wz-step title="Basic Info" template="app/templates/wizard.step.tpl.html" canenter="signupCtrl.canEnterBasicInfo">
                         <h2 class="heading_a">
                             Basic information
                             <span class="sub-heading">Provide your basic information</span>
@@ -64,7 +64,7 @@
                             </div>
                         </form>
                     </wz-step>
-                    <wz-step title="Contact Info" template="app/templates/wizard.step.tpl.html">
+                    <wz-step title="Contact Info" template="app/templates/wizard.step.tpl.html" canenter="signupCtrl.canEnterContactInfo">
                         <h2 class="heading_a">
                             Your contact info
                             <span class="sub-heading">If you're working at a salon, some data will be completed automatically.</span>
@@ -74,7 +74,7 @@
                             <div class="uk-grid">
                                 <div class="uk-width-medium-1-1 parsley-row">
                                     <label for="wizard_contact_phone">Phone</label>
-                                    <input type="text" name="wizard_contact_phone" id="wizard_contact_phone" required class="md-input"  md-input ng-model="signupCtrl.contactInfo.phone" />
+                                    <input type="text" name="wizard_contact_phone" id="wizard_contact_phone" class="md-input"  md-input ng-model="signupCtrl.contactInfo.phone" />
                                 </div>
                             </div>
                             <div class="uk-grid">
@@ -96,11 +96,11 @@
                                 </div>
                             </div>
                             <div class="uk-clearfix uk-margin-large-top">
-                                <button class="md-btn md-btn-primary uk-float-right" type="submit" validate-wz-next>Finish</button>
+                                <button class="md-btn md-btn-primary uk-float-right" type="submit" wz-finish validate-wz-next>Finish</button>
                             </div>
                         </form>
                     </wz-step>
-                    <wz-step title="Application Status" template="app/templates/wizard.step.tpl.html">
+                    <wz-step canenter="signupCtrl.statusInfo" title="Application Status" template="app/templates/wizard.step.tpl.html">
                         <h2 class="heading_a">
                             Status of your application
                         </h2>
