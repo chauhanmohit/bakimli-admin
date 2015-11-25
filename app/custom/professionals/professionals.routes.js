@@ -59,6 +59,20 @@
                     }
                 }]
             }
+        }).state('restricted.professionals.list', {
+            url: '/list',
+            templateUrl: '/app/views/professionals/list.html',
+            controller: 'ProfessionalListController as professionalCtrl',
+            data: {
+                pageTitle: "Professional list",
+                redirectTo: 'restricted.professionals.list'
+                permissions: ['HAS_PROFILE', 'IS_APPROVED']
+            },
+            resolve: {
+                professional: ['$rootScope', 'Professionals', function ($rootScope, professionals) {
+                   return professionals.get();
+                }]
+            }
         });
     }
 })();
