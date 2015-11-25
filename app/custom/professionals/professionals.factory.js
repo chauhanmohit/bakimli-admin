@@ -42,6 +42,15 @@
                     deferred.reject(response);
                 });
                 return deferred.promise;
+            },
+            getProfessional = function () {
+                var deferred = $q.defer();
+                $http.get("https://clonex.herokuapp.com/api/v1/professionals").then(function (response) {
+                    deferred.resolve(response.data);
+                }, function (response) {
+                    deferred.reject(response);
+                });
+                return deferred.promise;
             };
 
         return {

@@ -156,6 +156,7 @@ angular
                     $('#lang_switcher').next().children('.selectize-input').find('input').attr('readonly',true);
                 }
             };
+
             if (authorization.isActive()) {
                 $scope.sections = sidebars.activeUser;
             } else if (authorization.isAnonymous()) {
@@ -163,6 +164,44 @@ angular
             } else {
                 $scope.sections = sidebars.inactiveUser;
             }
+
+
+            // menu entries
+            $scope.sections = [
+                {
+                    id: 0,
+                    title: 'Home',
+                    icon: '&#xE871;',
+                    link: 'restricted.home'
+                },
+                {
+                    id: 1,
+                    title: 'User Profile',
+                    icon: '&#xE87C;',
+                    submenu: [
+                        {
+                            title: 'View profile',
+                            link: 'restricted.professionals.profile',
+                        },
+                        {
+                            title: 'Edit profile',
+                            link: 'restricted.professionals.edit'
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    title: 'Pages',
+                    icon: '&#xE87C;',
+                    submenu: [
+                        {
+                            title: 'Professional List',
+                            link: 'restricted.professionals.list',
+                        }
+                    ]
+                },
+
+            ];
 
         }
     ])
