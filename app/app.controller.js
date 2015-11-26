@@ -196,7 +196,18 @@ angular
                     submenu: [
                         {
                             title: 'Professional List',
-                            link: 'restricted.professionals.list',
+                            link: 'app.professionals.list',
+                        }
+                    ]
+                },
+                 {
+                    id: 3,
+                    title: 'Clients',
+                    icon: '&#xE87C;',
+                    submenu: [
+                        {
+                            title: 'Clients List',
+                            link: 'app.clients.list',
                         }
                     ]
                 },
