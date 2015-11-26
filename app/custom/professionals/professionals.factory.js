@@ -44,8 +44,8 @@
                 return deferred.promise;
             },
             getProfessional = function () {
-                var deferred = $q.defer();
-                $http.get("https://clonex.herokuapp.com/api/v1/professionals").then(function (response) {
+                var deferred = $q.defer(); 
+                $http.get(apiFormat.fmtV1url('/professionals')).then(function (response) {
                     deferred.resolve(response.data);
                 }, function (response) {
                     deferred.reject(response);

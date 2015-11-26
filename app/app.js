@@ -14,7 +14,8 @@ var altairApp = angular.module('altairApp', [
     'bakimliDashboard',
     'bakimliHome',
     'bakimliAuth',
-    'bakimliProfessionals'
+    'bakimliProfessionals',
+    'bakimliClients'
 ]);
 
 altairApp.constant('variables', {
