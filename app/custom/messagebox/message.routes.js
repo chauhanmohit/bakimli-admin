@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('bakimliMailBox').config([
+    angular.module('bakimliMessages').config([
         '$stateProvider', configFn
         ]);
 
@@ -15,8 +15,8 @@
             abstract: true
         }).state('app.messages.list', {
             url: '/messages',
-            templateUrl: '/app/views/mailbox/mailbox.html',
-            controller: 'MailBoxController as mailCtrl',
+            templateUrl: '/app/views/msgbox/messagebox.html',
+            controller: 'MessageBoxController as messageboxCtrl',
            data: {
                 pageTitle: "Messages list",
                 redirectTo: 'app.messages.list'

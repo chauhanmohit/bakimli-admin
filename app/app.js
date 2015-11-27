@@ -16,7 +16,7 @@ var altairApp = angular.module('altairApp', [
     'bakimliAuth',
     'bakimliProfessionals',
     'bakimliClients',
-    'bakimliMailBox'
+    'bakimliMessages'
 ]);
 
 altairApp.constant('variables', {
