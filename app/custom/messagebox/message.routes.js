@@ -15,7 +15,7 @@
             abstract: true
         }).state('app.messages.list', {
             url: '/messages',
-            templateUrl: '/app/views/msgbox/messagebox.html',
+            templateUrl: '/app/views/messagebox/messagebox.html',
             controller: 'MessageBoxController as messageboxCtrl',
            data: {
                 pageTitle: "Messages list",

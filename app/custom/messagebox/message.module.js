@@ -1,7 +1,6 @@
 (function() {
     'use strict';
-
-    angular.module('bakimliMessages', [
-        'ui.router'
+angular.module('bakimliMessages', [
+           'ui.router'
         ]);
 })();
