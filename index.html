@@ -36,10 +36,13 @@
     <!--<link href="http://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" media="all"> -->
     <!-- JS -->
         <!-- common functions -->
+        
         <script src="assets/js/common.js"></script>
         <!-- uikit functions -->
         <script src="assets/js/uikit_custom.js"></script>
-
+        <script src="assets/js/altair_admin_common.js"></script>
+        <script src="assets/js/pages/page_mailbox.min.js"></script>
+        
     <!-- ANGULAR -->
         <!-- angularjs -->
         <script src="bower_components/angular/angular.js"></script>
@@ -53,12 +56,12 @@
         <script src="bower_components/oclazyload/dist/ocLazyLoad.min.js"></script>
         <!-- retina images -->
         <script src="app/modules/angular-retina.js"></script>
-
+      
         <!-- altairApp -->
         <script src="assets/js/app.js"></script>
-    <!-- Google maps api -->
-    <script src="http://maps.google.com/maps/api/js?sensor=false&libraries=places,geometry" async="true"></script>
-        
+     <!-- Google maps api -->
+     <script src="http://maps.google.com/maps/api/js?sensor=false&libraries=places,geometry" async="true"></script>
+       
 
     <!-- main stylesheet -->
     <link rel="stylesheet" href="assets/css/main.min.css" media="all" id="main_stylesheet">
@@ -84,6 +87,10 @@
     <div ui-view="main_header"></div>
     <div ui-view id="main_view" ng-class="{'uk-height-1-1': page_full_height }"></div>
     <div ui-view="main_sidebar" ng-hide="topMenuActive"></div>
+    
+
+    
+     
 
 </body>
 </html>
