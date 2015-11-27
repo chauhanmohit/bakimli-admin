@@ -1,9 +1,6 @@
 (function() {
     'use strict';
-
-    angular.module('bakimliMessages').config([
-        '$stateProvider', configFn
-        ]);
+    angular.module('bakimliMessages').config(['$stateProvider', configFn]);
 
     function configFn($stateProvider) {
         $stateProvider.state("app.messages", {
@@ -13,15 +10,27 @@
                 pageTitle: 'Message'
             },
             abstract: true
-        }).state('app.messages.list', {
+        }).state( 'app.messages.list', {
             url: '/messages',
             templateUrl: '/app/views/messagebox/messagebox.html',
             controller: 'MessageBoxController as messageboxCtrl',
-           data: {
+            data: {
                 pageTitle: "Messages list",
                 redirectTo: 'app.messages.list'
                 //permissions: ['', 'IS_APPROVED']
             },
+            /*resolve: {
+                messages: function(messageService, $stateParams) {
+                    if ($stateParams.userId) {
+                        return messageService.getListMessage('12').then(function(list) {
+                              return list;
+                        });
+                    } else {
+                        return [];
+                    }
+                }
+            }*/
         });
     }
+
 })();

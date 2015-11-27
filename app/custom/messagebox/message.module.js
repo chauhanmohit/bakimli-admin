@@ -1,6 +1,6 @@
 (function() {
     'use strict';
 angular.module('bakimliMessages', [
-           'ui.router'
+           'ui.router','firebase'
         ]);
 })();

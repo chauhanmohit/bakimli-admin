@@ -16,8 +16,14 @@
                 if($scope.total > 10){
                     $http.get($scope.next_url).then(function(res){
                        $scope.keywords = ''; 
-                	   self.client = res.data.results;
-                	   $scope.next_url = res.data.next;
+                       console.log('old',self.client.length);
+                        //self.client = res.data.results;
+                        angular.forEach(res.data.results,function(results){
+                         
+                               self.client.push(results);
+                        })
+
+                        $scope.next_url = res.data.next;
                         if($scope.next_url === null){
                         $scope.total = $scope.total / 10*pageNoinitial;
                 	   }else if($scope.next_url!== null){

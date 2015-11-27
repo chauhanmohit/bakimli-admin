@@ -19,8 +19,8 @@
             controller: 'ClientListController as clientCtrl',
            data: {
                 pageTitle: "Client list",
-                redirectTo: 'app.clients.list'
-                //permissions: ['', 'IS_APPROVED']
+                redirectTo: 'app.clients.list',
+                permissions: ['', 'IS_APPROVED']
             },
              resolve: { 
                 client: ['$rootScope', 'Clients', function ($rootScope, clients) {
