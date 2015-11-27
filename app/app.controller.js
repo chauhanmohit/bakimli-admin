@@ -192,7 +192,7 @@ angular
                 {
                     id: 2,
                     title: 'Pages',
-                    icon: '&#xE87C;',
+                    icon: '&#xE24D;',
                     submenu: [
                         {
                             title: 'Professional List',
@@ -210,6 +210,12 @@ angular
                             link: 'app.clients.list',
                         }
                     ]
+                },
+                {
+                    id: 4,
+                    title: 'Messages',
+                    icon: '&#xE158;',
+                    link: 'app.messages.list'
                 },
 
             ];

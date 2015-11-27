@@ -1,32 +1,27 @@
 (function() {
     'use strict';
 
-    angular.module('bakimliClients').config([
+    angular.module('bakimliMailBox').config([
         '$stateProvider', configFn
         ]);
 
     function configFn($stateProvider) {
-        $stateProvider.state("app.clients", {
-            url: "/clients",
+        $stateProvider.state("app.messages", {
+            url: "/messagebox",
             template: '<ui-view />',
             data: {
-                pageTitle: 'Clients'
+                pageTitle: 'Message'
             },
             abstract: true
-        }).state('app.clients.list', {
-            url: '/list',
-            templateUrl: '/app/views/client/client_list.html',
-            controller: 'ClientListController as clientCtrl',
+        }).state('app.messages.list', {
+            url: '/messages',
+            templateUrl: '/app/views/mailbox/mailbox.html',
+            controller: 'MailBoxController as mailCtrl',
            data: {
-                pageTitle: "Client list",
-                redirectTo: 'app.clients.list'
+                pageTitle: "Messages list",
+                redirectTo: 'app.messages.list'
                 //permissions: ['', 'IS_APPROVED']
             },
-             resolve: { 
-                client: ['$rootScope', 'Clients', function ($rootScope, clients) {
-                   return clients.get();
-               }]
-            }
         });
     }
 })();

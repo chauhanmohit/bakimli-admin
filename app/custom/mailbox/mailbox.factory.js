@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('mailboxCtrl').factory('Mails', [
+    angular.module('bakimliMailBox').factory('Mails', [
         '$q', '$http', 'APIFormat', '$rootScope', mailsFactory
         ]);
 
